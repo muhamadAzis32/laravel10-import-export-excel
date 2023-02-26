@@ -12,42 +12,46 @@
 
 <body>
     <div class="container mt-5 text-center">
-        <h2 class="mb-4">
-            Laravel 9 Import and Export CSV & Excel to Database
+        <h2 class="mb-5">
+            Laravel 10 Import and Export CSV & Excel to Database
         </h2>
-        {{-- create a form tag with method post for the import feature --}}
-        <form action="{{ route('users.import') }}" method="POST" enctype="multipart/form-data">
+
+        <form action="{{ route('users.import') }}" method="POST" enctype="multipart/form-data"
+            class="row row-cols-lg-auto g-2 align-items-center justify-content-md-center mt-5 mb-3">
             @csrf
-            <div class="form-group mb-4" style="max-width: 500px; margin: 0 auto;">
-                <div class="input-group">
-                    {{-- make sure to add file to name attribute --}}
-                    <input type="file" name="file" class="form-control">
-                </div>
-                <div><small>Upload the file here before clicking 'Import data'</small></div>
+            <div class="col-12">
+                <input type="file" name="file" class="form-control" required>
             </div>
-            <button class="btn btn-primary" type="submit">Import data</button>
-            {{-- create a button for export feature --}}
-            <a class="btn btn-success" href="{{ route('users.export') }}">Export data</a>
+
+            <div class="col-12">
+                <button class="btn btn-primary" type="submit">Import data</button>
+            </div>
+
+            <div class="col-12">
+                <a class="btn btn-success" href="{{ route('users.export') }}">Export data</a>
+            </div>
         </form>
-        {{-- display users data --}}
-        <table class="table">
-            <thead>
-                <tr>
-                    <td>#</td>
-                    <td>Name</td>
-                    <td>Email</td>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($users as $key => $user)
+
+        <div class="py-4">
+            <table class="table table-striped table-hover table-bordered">
+                <thead class="table-dark">
                     <tr>
-                        <td>{{ ++$key }}</td>
-                        <td>{{ $user->name }}</td>
-                        <td>{{ $user->email }}</td>
+                        <td>#</td>
+                        <td>Name</td>
+                        <td>Email</td>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach ($users as $key => $user)
+                        <tr>
+                            <td>{{ ++$key }}</td>
+                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->email }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
 
