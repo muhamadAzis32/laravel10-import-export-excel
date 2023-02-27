@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+use App\Models\User;
 use App\Exports\UsersExport;
 use App\Imports\UserImport;
-use App\Models\User;
-use Excel;
-use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class UserController extends Controller
 {
